@@ -39,7 +39,8 @@ logs/
 spring.log
 
 # environment files
-.env
+!.env
+!.env.*
 
 # IDE/editor
 /.classpath
