@@ -75,6 +75,57 @@ public class DataLoader implements CommandLineRunner {
             projectRepository.save(project2);
             projectRepository.save(project3);
 
+            // Community projects without specific owner
+            Project p4 = new Project(
+                "Solar-Powered Rural Lighting",
+                "Deploy solar lanterns in off-grid Indian villages to replace kerosene and improve safety for children studying at night.",
+                "https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?auto=format&fit=crop&w=800&q=60",
+                new BigDecimal("150000"),
+                LocalDate.now().plusMonths(3),
+                null
+            );
+            Project p5 = new Project(
+                "Community Rainwater Harvesting Tank",
+                "Build a 50,000-litre rainwater harvesting system so the village of Mahabalipuram has clean water year-round.",
+                "https://images.unsplash.com/photo-1521540216272-a50305cd4421?auto=format&fit=crop&w=800&q=60",
+                new BigDecimal("200000"),
+                LocalDate.now().plusMonths(2),
+                null
+            );
+            Project p6 = new Project(
+                "Recycled-Plastic 3D-Printed Prosthetics",
+                "Turn plastic waste into low-cost 3D-printed prosthetic limbs for underserved amputees.",
+                "https://images.unsplash.com/photo-1581091870622-6c79b28d61b6?auto=format&fit=crop&w=800&q=60",
+                new BigDecimal("500000"),
+                LocalDate.now().plusMonths(4),
+                null
+            );
+            Project p7 = new Project(
+                "Organic Urban Rooftop Farming",
+                "Convert unused Chennai rooftops into organic vegetable gardens, providing fresh produce and local jobs.",
+                "https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=800&q=60",
+                new BigDecimal("120000"),
+                LocalDate.now().plusMonths(3),
+                null
+            );
+            Project p8 = new Project(
+                "Open-Source Braille eBook Reader",
+                "Develop an affordable, open-source refreshable braille reader so visually-impaired students can access digital books.",
+                "https://images.unsplash.com/photo-1564866657311-e9cc905d29d2?auto=format&fit=crop&w=800&q=60",
+                new BigDecimal("350000"),
+                LocalDate.now().plusMonths(5),
+                null
+            );
+            Project p9 = new Project(
+                "AI-Powered Crop Disease Detection",
+                "Build a smartphone app that uses AI to detect crop diseases early, reducing farmer losses.",
+                "https://images.unsplash.com/photo-1584447093335-da7cec3079e2?auto=format&fit=crop&w=800&q=60",
+                new BigDecimal("250000"),
+                LocalDate.now().plusMonths(4),
+                null
+            );
+            projectRepository.saveAll(java.util.List.of(p4,p5,p6,p7,p8,p9));
+
             System.out.println("Sample data loaded successfully!");
         }
     }
