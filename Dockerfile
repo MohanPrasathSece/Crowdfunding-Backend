@@ -1,14 +1,13 @@
-# Use official OpenJDK image
-FROM openjdk:17-jdk-slim
-
-# Set working directory
-WORKDIR /app
-
-# Copy the built jar file from the target directory
-COPY target/*.jar app.jar
-
-# Expose port 8080 (Spring Boot default)
-EXPOSE 8080
-
-# Run the JAR file
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# ---- Build Stage ----
+    FROM maven:3.8.5-openjdk-17-slim AS build
+    WORKDIR /app
+    COPY . .
+    RUN mvn clean package -DskipTests
+    
+    # ---- Run Stage ----
+    FROM openjdk:17-jdk-slim
+    WORKDIR /app
+    COPY --from=build /app/target/*.jar app.jar
+    EXPOSE 8080
+    ENTRYPOINT ["java", "-jar", "app.jar"]
+    
