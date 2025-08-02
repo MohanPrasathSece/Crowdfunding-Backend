@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Collections;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -28,7 +27,6 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Create sample user if not exists
         if (!userRepository.existsByEmail("admin@example.com")) {
             User admin = new User(
                 "Admin User",
@@ -38,7 +36,6 @@ public class DataLoader implements CommandLineRunner {
             );
             userRepository.save(admin);
 
-            // Create sample projects
             Project project1 = new Project(
                 "Smart Water Bottle",
                 "A revolutionary water bottle that tracks your hydration levels and reminds you to drink water.",
@@ -66,7 +63,6 @@ public class DataLoader implements CommandLineRunner {
                 admin
             );
 
-            // Set some collected amounts
             project1.setCollectedAmount(new BigDecimal("12500"));
             project2.setCollectedAmount(new BigDecimal("8000"));
             project3.setCollectedAmount(new BigDecimal("3500"));
@@ -75,7 +71,6 @@ public class DataLoader implements CommandLineRunner {
             projectRepository.save(project2);
             projectRepository.save(project3);
 
-            // Community projects without specific owner
             Project p4 = new Project(
                 "Solar-Powered Rural Lighting",
                 "Deploy solar lanterns in off-grid Indian villages to replace kerosene and improve safety for children studying at night.",
@@ -84,6 +79,7 @@ public class DataLoader implements CommandLineRunner {
                 LocalDate.now().plusMonths(3),
                 null
             );
+
             Project p5 = new Project(
                 "Community Rainwater Harvesting Tank",
                 "Build a 50,000-litre rainwater harvesting system so the village of Mahabalipuram has clean water year-round.",
@@ -92,6 +88,7 @@ public class DataLoader implements CommandLineRunner {
                 LocalDate.now().plusMonths(2),
                 null
             );
+
             Project p6 = new Project(
                 "Recycled-Plastic 3D-Printed Prosthetics",
                 "Turn plastic waste into low-cost 3D-printed prosthetic limbs for underserved amputees.",
@@ -100,6 +97,7 @@ public class DataLoader implements CommandLineRunner {
                 LocalDate.now().plusMonths(4),
                 null
             );
+
             Project p7 = new Project(
                 "Organic Urban Rooftop Farming",
                 "Convert unused Chennai rooftops into organic vegetable gardens, providing fresh produce and local jobs.",
@@ -108,6 +106,7 @@ public class DataLoader implements CommandLineRunner {
                 LocalDate.now().plusMonths(3),
                 null
             );
+
             Project p8 = new Project(
                 "Open-Source Braille eBook Reader",
                 "Develop an affordable, open-source refreshable braille reader so visually-impaired students can access digital books.",
@@ -116,6 +115,7 @@ public class DataLoader implements CommandLineRunner {
                 LocalDate.now().plusMonths(5),
                 null
             );
+
             Project p9 = new Project(
                 "AI-Powered Crop Disease Detection",
                 "Build a smartphone app that uses AI to detect crop diseases early, reducing farmer losses.",
@@ -124,7 +124,17 @@ public class DataLoader implements CommandLineRunner {
                 LocalDate.now().plusMonths(4),
                 null
             );
-            projectRepository.saveAll(java.util.List.of(p4,p5,p6,p7,p8,p9));
+
+            Project p10 = new Project(
+                "Medical Aid for Stray Dogs",
+                "Raising funds to treat, vaccinate, and feed injured stray dogs in the city.",
+                "https://images.unsplash.com/photo-1601758123927-1965c7c7d7b6?auto=format&fit=crop&w=800&q=60",
+                new BigDecimal("30000"),
+                LocalDate.now().plusMonths(1),
+                null
+            );
+
+            projectRepository.saveAll(java.util.List.of(p4, p5, p6, p7, p8, p9, p10));
 
             System.out.println("Sample data loaded successfully!");
         }
