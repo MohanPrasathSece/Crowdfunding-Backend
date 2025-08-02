@@ -23,6 +23,7 @@ import com.example.crowdfunding.repository.ContributionRepository;
 
 @RestController
 @RequestMapping("/api/projects")
+@CrossOrigin(origins = "*")
 public class ProjectController {
 
     @Autowired
